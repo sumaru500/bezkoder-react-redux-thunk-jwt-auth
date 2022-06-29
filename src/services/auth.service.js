@@ -1,5 +1,5 @@
 import axios from "axios";
-import * as AuthConfig from "./auth.const.js";
+import * as AuthConfig from "./auth.config.js";
 import * as LocalStorageKey from '../const/localStorage.key.js';
 
 class AuthService {
@@ -7,7 +7,7 @@ class AuthService {
     // signin{username, password}
     login(username, password) {
         return axios
-        .get(AuthConfig.API_URL + AuthConfig.SIGNIN_URI, {username, password})
+        .post(AuthConfig.API_URL + AuthConfig.SIGNIN_URI, {username, password})
         .then(response => {
             if (response.data.accessToken) {
                 localStorage.setItem(LocalStorageKey.USER_KEY, JSON.stringify(response.data));

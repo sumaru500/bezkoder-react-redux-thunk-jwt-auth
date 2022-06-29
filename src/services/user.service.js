@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authHeader from './auth-header.js';
-import * as UserConfig from './user.const.js';
+import * as UserConfig from './user.config.js';
 
 class UserService {
     // not needed authenticated
