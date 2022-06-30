@@ -80,7 +80,7 @@ class Login extends Component {
                 name="username"
                 value={this.state.username}
                 onChange={(event) => {
-                  onChange(event);
+                  onChange(event, this);
                 }}
                 validations={[required]}
               />
@@ -94,7 +94,7 @@ class Login extends Component {
                 name="password"
                 value={this.state.password}
                 onChange={(event) => {
-                  onChange(event);
+                  onChange(event, this);
                 }}
                 validations={[required]}
               />

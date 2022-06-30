@@ -38,7 +38,7 @@ export  const vpassword = (value) => {
     }
   };
 
-export const onChange = (event) => {
+export function onChange(event, component){
     const target = event.target;
     let value = target.value;
     if (target.type === 'checkbox') {
@@ -46,8 +46,8 @@ export const onChange = (event) => {
     }
 
     if (target.name) {
-        this.setState({
-          ...this.state,
+        component.setState({
+          ...component.state,
           [target.name]: value,
         });
     }

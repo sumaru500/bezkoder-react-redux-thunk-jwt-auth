@@ -5,7 +5,6 @@ import CheckButton from "react-validation/build/button";
 import { connect } from "react-redux";
 import {register} from "../actions/auth";
 import {onChange, required, email, vusername, vpassword } from "./utils/formValidation";
-import { toHaveFormValues } from "@testing-library/jest-dom/dist/matchers";
 
 class Register extends Component {
     constructor(props) {
@@ -71,7 +70,7 @@ class Register extends Component {
                         className="form-control"
                         name="username"
                         value={this.state.username}
-                        onChange={(event) => onChange(event)}
+                        onChange={(event) => onChange(event, this)}
                         validations={[required, vusername]}
                       />
                     </div>
@@ -82,7 +81,7 @@ class Register extends Component {
                         className="form-control"
                         name="email"
                         value={this.state.email}
-                        onChange={(event) => onChange(event)}
+                        onChange={(event) => onChange(event, this)}
                         validations={[required, email]}
                       />
                     </div>
@@ -93,7 +92,7 @@ class Register extends Component {
                         className="form-control"
                         name="password"
                         value={this.state.password}
-                        onChange={(event) => onChange(event)}
+                        onChange={(event) => onChange(event, this)}
                         validations={[required, vpassword]}
                       />
                     </div>
