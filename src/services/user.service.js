@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../api/axios';
 import authHeader from './auth-header.js';
 import * as UserConfig from './user.config.js';
 
@@ -9,15 +9,21 @@ class UserService {
     }
 
     getUserBoard() {
-        return axios.get(UserConfig.API_URL + UserConfig.USER_URI, {headers: authHeader()})
+        return axios.get(UserConfig.API_URL + UserConfig.USER_URI
+            // , {headers: authHeader()}
+        )
     }
     
     getModeratorBoard() {
-        return axios.get(UserConfig.API_URL + UserConfig.MODERATOR_URI, {headers: authHeader()})        
+        return axios.get(UserConfig.API_URL + UserConfig.MODERATOR_URI
+            // , {headers: authHeader()}
+        )        
     }
     
     getAdminBoard() {
-        return axios.get(UserConfig.API_URL + UserConfig.ADMIN_URI, {headers: authHeader()})
+        return axios.get(UserConfig.API_URL + UserConfig.ADMIN_URI
+            // , {headers: authHeader()}
+        )
     }
 }
 

@@ -17,7 +17,7 @@ export default class BoardModerator extends Component {
     UserService.getModeratorBoard().then(
       response => {
         this.setState({
-          content: response.data
+          content: response.data.content
         });
       },
       error => {

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../api/axios";
 import * as AuthConfig from "./auth.config.js";
 import * as LocalStorageKey from '../const/localStorage.key.js';
 
@@ -25,6 +25,10 @@ class AuthService {
         return axios
         .post(AuthConfig.API_URL + AuthConfig.SIGNUP_URI, {username, password, email});
     }
+
+    getAuthUser () {
+        return JSON.parse(localStorage.getItem(LocalStorageKey.USER_KEY));
+    } 
 }
 
 export default new AuthService();

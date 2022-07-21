@@ -13,6 +13,8 @@ import BoardAdmin from "./pages/secure/BoardAdmin.page";
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
 import { history } from './helpers/history';
+import GuardRoute from "./components/GuardRoute.component";
+import * as ROLES from "./const/roles.const";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -31,13 +33,14 @@ class App extends Component {
     if (user) {
       this.setState({
         currentUser: user,
-        showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
-        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        showModeratorBoard: user.roles.includes(ROLES.MODERATOR),
+        showAdminBoard: user.roles.includes(ROLES.ADMIN),
       });
     }
   }
   logOut() {
     this.props.dispatch(logout());
+    history.push('/'); // after logout => redirect to home page
   }
   render() {
     const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
@@ -110,9 +113,9 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
-              <Route path="/user" component={BoardUser} />
-              <Route path="/mod" component={BoardModerator} />
-              <Route path="/admin" component={BoardAdmin} />
+              <GuardRoute path="/user" component={BoardUser} canActive={{role: ROLES.USER, homeUrl: "/", loginUrl: "/login"}} />
+              <GuardRoute path="/mod" component={BoardModerator} canActive={{role: ROLES.MODERATOR, homeUrl: "/", loginUrl: "/login"}} />
+              <GuardRoute path="/admin" component={BoardAdmin} canActive={{role: ROLES.ADMIN, homeUrl: "/", loginUrl: "/login"}} />
             </Switch>
           </div>
         </div>

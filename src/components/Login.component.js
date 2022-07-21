@@ -30,11 +30,12 @@ class Login extends Component {
     this.form.validateAll();
 
     const { dispatch, history } = this.props;
+    const {from} = this.props.location.state || {from: '/profile'};
     if (this.checkBtn.context._errors.length === 0) {
       // all validated => dispatch actions => return a promise
       try {
         await dispatch(login(this.state.username, this.state.password));
-        history.push('/profile');
+        history.push(from);
         window.location.reload(); // inorder to using Redirect in render
       } catch (error) {
         this.setState({
@@ -51,8 +52,9 @@ class Login extends Component {
 
   render() {
     const { isLogged, message } = this.props;
+    const {from} = this.props.location.state || {from: '/profile'};
     if (isLogged) {
-      return <Redirect to="/profile"></Redirect>;
+      return <Redirect to={from}></Redirect>;
     }
     return (
       <div className="col-md-12">
